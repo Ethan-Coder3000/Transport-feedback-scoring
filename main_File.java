@@ -6,11 +6,12 @@ import java.io.*;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import whereIsMyTransportPackage.whereIsMyTransport;
 
 public class main_File {
     private static ArrayList<String> referenceData = new ArrayList<String>();
     private static ArrayList<String> scoresData = new ArrayList<String>();
-    private static ArrayList<String> whereIsMyTransportlist = new ArrayList<String>();
+    private static ArrayList<whereIsMyTransport> whereIsMyTransportlist = new ArrayList<whereIsMyTransport>();
 
     public static String getDay(String dayN) throws Exception {
         Format formatDate = new SimpleDateFormat("EEEE");
@@ -39,6 +40,9 @@ public class main_File {
         inputFiles(referenceData, "reference-data.txt");
         inputFiles(scoresData, "scores.txt");
         whereIsMyTransportlist = sortHashMap.createWMT(referenceData, scoresData);
+        for (int i = 0; i < whereIsMyTransportlist.size(); i++) {
+            System.out.println(whereIsMyTransportlist.get(i).calTotScore());
+        }
     }
 
     public static void main(String[] args) throws Exception {

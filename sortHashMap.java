@@ -100,8 +100,7 @@ public class sortHashMap {
             String arr[] = referenceData.get(i).split(";", 2);
             String agency = arr[1];
             List arrK = new ArrayList(sortingMap.keySet());
-            int index = arrK.indexOf(arr[0].replaceAll("\\s.*", ""));
-            whereIsMyTransportlist.add(new whereIsMyTransport(agency, sortingMap.get(index)));
+            whereIsMyTransportlist.add(new whereIsMyTransport(agency, sortingMap.get(arr[0].replaceAll("\\s.*", ""))));
         }
         return whereIsMyTransportlist;
     }

@@ -16,9 +16,13 @@ public class whereIsMyTransport {
         return this.agency;
     }
 
+    public Map<String, Double> getIden() {
+        return this.ideni;
+    }
+
     public Double calTotScore() {
         Double count = 0.0;
-        for (String key : this.ideni.keySet()) {
+        for (String key : ideni.keySet()) {
             count = count + ideni.get(key);
         }
         return (BigDecimal.valueOf(count).setScale(2, RoundingMode.HALF_UP)).doubleValue();
