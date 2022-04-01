@@ -1,28 +1,35 @@
+import java.math.*;
 import java.util.*;
 
 public class sortHashMap {
-    public static HashMap<String, Double> sortByValue(HashMap<String, Double> hm) {
-        List<Map.Entry<String, Double>> list = new LinkedList<Map.Entry<String, Double>>(hm.entrySet());
+    private static Map<String, Double> innerHash = new HashMap<>();
+    private static Map<String, Integer> innerCount = new HashMap<>();
+    private static Map<String, Map<String, Integer>> CountHash = new HashMap<>();
+    private static Map<String, Map<String, Double>> sortingMap = new HashMap<>();
 
-        Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
-            public int compare(Map.Entry<String, Double> o1,
-                    Map.Entry<String, Double> o2) {
-                return (o1.getValue()).compareTo(o2.getValue());
-            }
-        });
-
-        HashMap<String, Double> temp = new LinkedHashMap<String, Double>();
-        for (Map.Entry<String, Double> aa : list) {
-            temp.put(aa.getKey(), aa.getValue());
+    private static void sortHash() {
+        Map<String, Double> sortH;
+        for (String key : sortingMap.keySet()) {
+            sortH = sortingMap.get(key);
+            LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
+            sortH.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                    .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+            sortingMap.put(key, sortedMap);
         }
-        return temp;
     }
 
-    public static void hashMapkeys(ArrayList<String> referenceData, ArrayList<String> scoresData,
-            Map<String, Double> innerHash,
-            Map<String, Integer> innerCount,
-            Map<String, Map<String, Integer>> CountHash,
-            Map<String, Map<String, Double>> sortingMap) throws Exception {
+    private static void performCalc() {
+        Map<String, Double> temp = new HashMap<>();
+        for (String key : sortingMap.keySet()) {
+            for (String keyC : sortingMap.get(key).keySet()) {
+                sortingMap.get(key).put(keyC, (double) BigDecimal.valueOf((sortingMap.get(key).get(keyC))
+                        / (Double) Double.valueOf(CountHash.get(key).get(keyC))).setScale(2, RoundingMode.HALF_UP)
+                        .doubleValue());
+            }
+        }
+    }
+
+    public static void hashMapkeys(ArrayList<String> referenceData, ArrayList<String> scoresData) throws Exception {
         String arr[];
         String valKey;
         for (int i = 0; i < scoresData.size(); i++) {
@@ -69,7 +76,6 @@ public class sortHashMap {
                     continue;
                 } else {
                     innerHash = new HashMap<>();
-                    // innerHash.put(key, (double) Math.round(val / 2));
                     innerHash.put(key, (double) val);
                     sortingMap.put(valKey, innerHash);
 
@@ -79,9 +85,11 @@ public class sortHashMap {
                 }
             }
         }
-        System.out.println(sortingMap);
+        System.out.println(sortingMap + "\n");
         System.out.println(CountHash);
-
+        performCalc();
+        sortHash();
+        System.out.println(sortingMap + "\n");
     }
 
 }

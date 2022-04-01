@@ -10,10 +10,6 @@ import java.util.*;
 public class main_File {
     public static ArrayList<String> referenceData = new ArrayList<String>();
     public static ArrayList<String> scoresData = new ArrayList<String>();
-    public static Map<String, Double> innerHash = new HashMap<>();
-    public static Map<String, Integer> innerCount = new HashMap<>();
-    public static Map<String, Map<String, Integer>> CountHash = new HashMap<>();
-    public static Map<String, Map<String, Double>> sortingMap = new HashMap<>();
 
     public static String getDay(String dayN) throws Exception {
         Format formatDate = new SimpleDateFormat("EEEE");
@@ -40,11 +36,7 @@ public class main_File {
     public void run() throws Exception {
         inputFiles(referenceData, "reference-data.txt");
         inputFiles(scoresData, "scores.txt");
-        sortHashMap.hashMapkeys(referenceData, scoresData,
-                innerHash,
-                innerCount,
-                CountHash,
-                sortingMap);
+        sortHashMap.hashMapkeys(referenceData, scoresData);
     }
 
     public static void main(String[] args) throws Exception {
