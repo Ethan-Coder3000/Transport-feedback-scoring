@@ -17,18 +17,6 @@ public class sortHashMap {
         return out;
     }
 
-    // private static void sortHash() {
-    // Map<String, Double> sortH;
-    // for (String key : sortingMap.keySet()) {
-    // sortH = sortingMap.get(key);
-    // LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
-    // sortH.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-    // .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
-    // sortingMap.put(key, sortedMap);
-
-    // }
-    // }
-
     private static void performCalc() {
         for (String key : sortingMap.keySet()) {
             for (String keyC : sortingMap.get(key).keySet()) {
