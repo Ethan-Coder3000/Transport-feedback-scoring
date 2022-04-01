@@ -1,5 +1,7 @@
 import java.math.*;
 import java.util.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import whereIsMyTransportPackage.whereIsMyTransport;
 
 public class sortHashMap {
@@ -8,17 +10,24 @@ public class sortHashMap {
     private static Map<String, Map<String, Integer>> CountHash = new HashMap<>();
     private static Map<String, Map<String, Double>> sortingMap = new HashMap<>();
 
-    private static void sortHash() {
-        Map<String, Double> sortH;
-        for (String key : sortingMap.keySet()) {
-            sortH = sortingMap.get(key);
-            LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
-            sortH.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                    .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
-            sortingMap.put(key, sortedMap);
-
-        }
+    private static String getDay(String dayN) throws Exception {
+        Format formatDate = new SimpleDateFormat("EEEE");
+        Date dateIn = new SimpleDateFormat("yyyy/mm/dd").parse(dayN);
+        String out = formatDate.format(dateIn);
+        return out;
     }
+
+    // private static void sortHash() {
+    // Map<String, Double> sortH;
+    // for (String key : sortingMap.keySet()) {
+    // sortH = sortingMap.get(key);
+    // LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
+    // sortH.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+    // .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+    // sortingMap.put(key, sortedMap);
+
+    // }
+    // }
 
     private static void performCalc() {
         for (String key : sortingMap.keySet()) {
@@ -28,7 +37,6 @@ public class sortHashMap {
                         .doubleValue());
             }
         }
-        sortHash();
     }
 
     private static void hashMapkeys(ArrayList<String> referenceData, ArrayList<String> scoresData) throws Exception {
@@ -36,7 +44,7 @@ public class sortHashMap {
         String valKey;
         for (int i = 0; i < scoresData.size(); i++) {
             String dateEx = scoresData.get(i).substring(0, scoresData.get(i).indexOf(";"));
-            scoresData.set(i, scoresData.get(i).replace(dateEx, main_File.getDay(dateEx)));
+            scoresData.set(i, scoresData.get(i).replace(dateEx, getDay(dateEx)));
             arr = scoresData.get(i).split(";", 2);
             valKey = arr[1].replaceAll("\\s.*", "");
             scoresData.set(i, scoresData.get(i).replace(valKey, ""));
@@ -93,8 +101,6 @@ public class sortHashMap {
     public static ArrayList<whereIsMyTransport> createWMT(ArrayList<String> referenceData, ArrayList<String> scoresData)
             throws Exception {
         hashMapkeys(referenceData, scoresData);
-        // Collection<whereIsMyTransport> whereIsMyTransportlist = new
-        // ArrayList<whereIsMyTransport>();
         ArrayList<whereIsMyTransport> whereIsMyTransportlist = new ArrayList<whereIsMyTransport>();
         for (int i = 0; i < referenceData.size(); i++) {
             String arr[] = referenceData.get(i).split(";", 2);

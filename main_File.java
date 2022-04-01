@@ -3,8 +3,6 @@ Transport feedback scoring
 */
 
 import java.io.*;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import whereIsMyTransportPackage.whereIsMyTransport;
 
@@ -12,13 +10,6 @@ public class main_File {
     private static ArrayList<String> referenceData = new ArrayList<String>();
     private static ArrayList<String> scoresData = new ArrayList<String>();
     private static ArrayList<whereIsMyTransport> whereIsMyTransportlist = new ArrayList<whereIsMyTransport>();
-
-    public static String getDay(String dayN) throws Exception {
-        Format formatDate = new SimpleDateFormat("EEEE");
-        Date dateIn = new SimpleDateFormat("yyyy/mm/dd").parse(dayN);
-        String out = formatDate.format(dateIn);
-        return out;
-    }
 
     public static void inputFiles(ArrayList<String> arraylistName, String fileName) throws IOException {
         BufferedReader reader;
@@ -40,8 +31,9 @@ public class main_File {
         inputFiles(referenceData, "reference-data.txt");
         inputFiles(scoresData, "scores.txt");
         whereIsMyTransportlist = sortHashMap.createWMT(referenceData, scoresData);
+        Collections.sort(whereIsMyTransportlist, new whereIsMyTransportComparator());
         for (int i = 0; i < whereIsMyTransportlist.size(); i++) {
-            System.out.println(whereIsMyTransportlist.get(i).calTotScore());
+            System.out.println(whereIsMyTransportlist.get(i).toString());
         }
     }
 

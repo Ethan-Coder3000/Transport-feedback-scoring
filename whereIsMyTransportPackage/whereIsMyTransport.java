@@ -44,9 +44,22 @@ public class whereIsMyTransport {
         return score;
     }
 
-    // public String toString()
-    // {
-    // return "[Card: index=" + index + ", symbol=" + symbol + ", value=" + value +
-    // "]";
-    // }
+    private Map<String, Double> sortHash() {
+        Map<String, Double> sortH;
+        sortH = ideni;
+        LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
+        sortH.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+        return sortedMap;
+    }
+
+    @Override
+    public String toString() {
+        String outString = "";
+        this.ideni = sortHash();
+        for (String key : ideni.keySet()) {
+            outString = outString + this.agency + " " + key + " " + ideni.get(key) + "\n";
+        }
+        return outString;
+    }
 }
