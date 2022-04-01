@@ -10,6 +10,7 @@ import java.util.*;
 public class main_File {
     private static ArrayList<String> referenceData = new ArrayList<String>();
     private static ArrayList<String> scoresData = new ArrayList<String>();
+    private static ArrayList<String> whereIsMyTransportlist = new ArrayList<String>();
 
     public static String getDay(String dayN) throws Exception {
         Format formatDate = new SimpleDateFormat("EEEE");
@@ -21,7 +22,8 @@ public class main_File {
     public static void inputFiles(ArrayList<String> arraylistName, String fileName) throws IOException {
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader(fileName));
+            reader = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
             String line = reader.readLine();
             while (line != null) {
                 arraylistName.add(line);
@@ -36,7 +38,7 @@ public class main_File {
     public void run() throws Exception {
         inputFiles(referenceData, "reference-data.txt");
         inputFiles(scoresData, "scores.txt");
-        sortHashMap.hashMapkeys(referenceData, scoresData);
+        whereIsMyTransportlist = sortHashMap.createWMT(referenceData, scoresData);
     }
 
     public static void main(String[] args) throws Exception {

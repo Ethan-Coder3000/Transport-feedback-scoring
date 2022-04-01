@@ -1,5 +1,6 @@
 import java.math.*;
 import java.util.*;
+import whereIsMyTransportPackage.whereIsMyTransport;
 
 public class sortHashMap {
     private static Map<String, Double> innerHash = new HashMap<>();
@@ -30,7 +31,7 @@ public class sortHashMap {
         sortHash();
     }
 
-    public static void hashMapkeys(ArrayList<String> referenceData, ArrayList<String> scoresData) throws Exception {
+    private static void hashMapkeys(ArrayList<String> referenceData, ArrayList<String> scoresData) throws Exception {
         String arr[];
         String valKey;
         for (int i = 0; i < scoresData.size(); i++) {
@@ -87,6 +88,21 @@ public class sortHashMap {
             }
         }
         performCalc();
-        System.out.println(sortingMap);
+    }
+
+    public static ArrayList<whereIsMyTransport> createWMT(ArrayList<String> referenceData, ArrayList<String> scoresData)
+            throws Exception {
+        hashMapkeys(referenceData, scoresData);
+        // Collection<whereIsMyTransport> whereIsMyTransportlist = new
+        // ArrayList<whereIsMyTransport>();
+        ArrayList<whereIsMyTransport> whereIsMyTransportlist = new ArrayList<whereIsMyTransport>();
+        for (int i = 0; i < referenceData.size(); i++) {
+            String arr[] = referenceData.get(i).split(";", 2);
+            String agency = arr[1];
+            List arrK = new ArrayList(sortingMap.keySet());
+            int index = arrK.indexOf(arr[0].replaceAll("\\s.*", ""));
+            whereIsMyTransportlist.add(new whereIsMyTransport(agency, sortingMap.get(index)));
+        }
+        return whereIsMyTransportlist;
     }
 }
