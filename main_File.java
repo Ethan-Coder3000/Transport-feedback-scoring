@@ -8,8 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class main_File {
-    public static ArrayList<String> referenceData = new ArrayList<String>();
-    public static ArrayList<String> scoresData = new ArrayList<String>();
+    private static ArrayList<String> referenceData = new ArrayList<String>();
+    private static ArrayList<String> scoresData = new ArrayList<String>();
 
     public static String getDay(String dayN) throws Exception {
         Format formatDate = new SimpleDateFormat("EEEE");

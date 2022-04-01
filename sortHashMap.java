@@ -15,11 +15,11 @@ public class sortHashMap {
             sortH.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                     .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
             sortingMap.put(key, sortedMap);
+
         }
     }
 
     private static void performCalc() {
-        Map<String, Double> temp = new HashMap<>();
         for (String key : sortingMap.keySet()) {
             for (String keyC : sortingMap.get(key).keySet()) {
                 sortingMap.get(key).put(keyC, (double) BigDecimal.valueOf((sortingMap.get(key).get(keyC))
@@ -27,6 +27,7 @@ public class sortHashMap {
                         .doubleValue());
             }
         }
+        sortHash();
     }
 
     public static void hashMapkeys(ArrayList<String> referenceData, ArrayList<String> scoresData) throws Exception {
@@ -85,11 +86,7 @@ public class sortHashMap {
                 }
             }
         }
-        System.out.println(sortingMap + "\n");
-        System.out.println(CountHash);
         performCalc();
-        sortHash();
-        System.out.println(sortingMap + "\n");
+        System.out.println(sortingMap);
     }
-
 }
