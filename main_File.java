@@ -32,9 +32,7 @@ public class main_File {
         inputFiles(scoresData, "scores.txt");
         whereIsMyTransportlist = sortHashMap.createWMT(referenceData, scoresData);
         Collections.sort(whereIsMyTransportlist, new whereIsMyTransportComparator());
-        for (int i = 0; i < whereIsMyTransportlist.size(); i++) {
-            System.out.println(whereIsMyTransportlist.get(i).toString());
-        }
+        writeToTextFile.writeText(whereIsMyTransportlist);
     }
 
     public static void main(String[] args) throws Exception {

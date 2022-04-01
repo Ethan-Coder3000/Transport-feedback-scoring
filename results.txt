@@ -1,0 +1,70 @@
+El Rosario - Martín Carrera Monday 7.9
+El Rosario - Martín Carrera Tuesday 5.88
+El Rosario - Martín Carrera Sunday 5.86
+El Rosario - Martín Carrera Wednesday 2.97
+El Rosario - Martín Carrera Saturday 2.94
+El Rosario - Martín Carrera Thursday 2.0
+El Rosario - Martín Carrera Friday 2.0
+Politécnico - Pantitlán Sunday 7.8
+Politécnico - Pantitlán Monday 5.93
+Politécnico - Pantitlán Saturday 5.91
+Politécnico - Pantitlán Tuesday 2.95
+Politécnico - Pantitlán Friday 2.93
+Politécnico - Pantitlán Wednesday 2.0
+Politécnico - Pantitlán Thursday 1.94
+El Rosario - Barranca del Muerto Sunday 7.93
+El Rosario - Barranca del Muerto Saturday 5.89
+El Rosario - Barranca del Muerto Monday 5.8
+El Rosario - Barranca del Muerto Tuesday 2.96
+El Rosario - Barranca del Muerto Friday 2.95
+El Rosario - Barranca del Muerto Wednesday 2.0
+El Rosario - Barranca del Muerto Thursday 1.92
+Garibaldi - Constitución de 1917 Tuesday 7.89
+Garibaldi - Constitución de 1917 Monday 5.84
+Garibaldi - Constitución de 1917 Wednesday 5.84
+Garibaldi - Constitución de 1917 Sunday 2.96
+Garibaldi - Constitución de 1917 Thursday 2.91
+Garibaldi - Constitución de 1917 Saturday 2.0
+Garibaldi - Constitución de 1917 Friday 1.92
+Indios Verdes - Universidad Wednesday 7.91
+Indios Verdes - Universidad Thursday 5.93
+Indios Verdes - Universidad Tuesday 5.85
+Indios Verdes - Universidad Monday 2.97
+Indios Verdes - Universidad Sunday 2.0
+Indios Verdes - Universidad Saturday 1.98
+Indios Verdes - Universidad Friday 1.0
+Pantitlán - Tacubaya Saturday 7.86
+Pantitlán - Tacubaya Sunday 5.95
+Pantitlán - Tacubaya Friday 5.88
+Pantitlán - Tacubaya Monday 2.89
+Pantitlán - Tacubaya Tuesday 2.0
+Pantitlán - Tacubaya Wednesday 1.97
+Pantitlán - Tacubaya Thursday 1.0
+Cuatro Caminos - Tasqueña Saturday 7.89
+Cuatro Caminos - Tasqueña Sunday 5.93
+Cuatro Caminos - Tasqueña Friday 5.74
+Cuatro Caminos - Tasqueña Monday 2.95
+Cuatro Caminos - Tasqueña Tuesday 2.0
+Cuatro Caminos - Tasqueña Wednesday 1.96
+Cuatro Caminos - Tasqueña Thursday 1.0
+Ciudad Azteca - Buenavista Friday 7.92
+Ciudad Azteca - Buenavista Saturday 5.91
+Ciudad Azteca - Buenavista Sunday 2.98
+Ciudad Azteca - Buenavista Monday 2.0
+Ciudad Azteca - Buenavista Tuesday 1.95
+Ciudad Azteca - Buenavista Thursday 1.51
+Ciudad Azteca - Buenavista Wednesday 1.0
+Pantitlán - La Paz Thursday 7.91
+Pantitlán - La Paz Wednesday 5.87
+Pantitlán - La Paz Tuesday 2.94
+Pantitlán - La Paz Monday 2.0
+Pantitlán - La Paz Sunday 1.94
+Pantitlán - La Paz Friday 1.36
+Pantitlán - La Paz Saturday 1.0
+Pantitlán - Observatorio Friday 7.87
+Pantitlán - Observatorio Saturday 5.78
+Pantitlán - Observatorio Sunday 2.97
+Pantitlán - Observatorio Monday 2.0
+Pantitlán - Observatorio Tuesday 1.92
+Pantitlán - Observatorio Thursday 1.37
+Pantitlán - Observatorio Wednesday 1.0
