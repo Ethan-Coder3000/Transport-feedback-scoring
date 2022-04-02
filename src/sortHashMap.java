@@ -31,9 +31,11 @@ public class sortHashMap {
             arr = scoresData.get(i).split(";", 2);
             valKey = arr[1].replaceAll("\\s.*", "");
             scoresData.set(i, scoresData.get(i).replace(valKey, ""));
+
             arr = scoresData.get(i).split(";", 2);
             String key = getDay(arr[0].replaceAll(" ", ""));
             Double val = (double) Integer.parseInt(arr[1].replaceAll(" ", ""));
+
             innerHash = new HashMap<>();
             innerCount = new HashMap<>();
             if (val == (double) 0 || val == (double) 10) {
@@ -69,12 +71,10 @@ public class sortHashMap {
             throws Exception {
         for (int i = 0; i < referenceData.size(); i++) {
             String arr[] = referenceData.get(i).split(";", 2);
-            String agency = arr[1];
             Map<String, Double> tempMap = new HashMap<>();
             Map<String, Integer> tempIntMap = new HashMap<>();
-            ;
             whereIsMyTransportlist
-                    .add(new whereIsMyTransport(agency, arr[0].replaceAll("\\s.*", ""), tempMap, tempIntMap));
+                    .add(new whereIsMyTransport(arr[1], arr[0].replaceAll("\\s.*", ""), tempMap, tempIntMap));
         }
         hashMapkeys(referenceData, scoresData);
         performCal();

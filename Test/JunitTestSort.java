@@ -9,13 +9,14 @@ import whereIsMyTransportPackage.whereIsMyTransport;
 import src.sortHashMap;
 import comparatorPackage.whereIsMyTransportComparator;
 
-public class JunitTestMain {
+public class JunitTestSort {
     public ArrayList<String> referenceData = new ArrayList<String>();
     public ArrayList<String> scoresData = new ArrayList<String>();
-    public ArrayList<whereIsMyTransport> whereIsMyTransportlist = new ArrayList<whereIsMyTransport>();
 
     @Before
     public void defineArrayList() {
+        referenceData.clear();
+        scoresData.clear();
         referenceData.add("route_f97ad4ff UNI;Rome - Milan");
         referenceData.add("route_cc4722b0 UNI;Milan - Tasqueña");
         referenceData.add("route_29eac9a5 UNI;Milan - Palermo");
@@ -59,23 +60,8 @@ public class JunitTestMain {
     }
 
     @Test
-    public void testList() throws Exception {
-        whereIsMyTransportlist = sortHashMap.createWMT(referenceData, scoresData);
-        String out = "Rome - Milan Friday 8.0\nRome - Milan Wednesday 5.5\nRome - Milan Sunday 3.25\nRome - Milan Monday 2.0\n";
-        String out1 = "Milan - Tasqueña Monday 3.0\nMilan - Tasqueña Wednesday 3.0\n";
-        String out2 = "Milan - Palermo Saturday 5.0\nMilan - Palermo Thursday 3.0\nMilan - Palermo Monday 2.0\n";
-        String out3 = "Palermo - Florence Friday 5.0\nPalermo - Florence Wednesday 4.0\nPalermo - Florence Sunday 2.0\nPalermo - Florence Tuesday 2.0\n";
-        String out4 = "Garibaldi - Veniceión de 1758 Thursday 5.0\nGaribaldi - Veniceión de 1758 Tuesday 3.5\n";
-        assertEquals(whereIsMyTransportlist.get(0).toString(), out);
-        assertEquals(whereIsMyTransportlist.get(1).toString(), out1);
-        assertEquals(whereIsMyTransportlist.get(2).toString(), out2);
-        assertEquals(whereIsMyTransportlist.get(3).toString(), out3);
-        assertEquals(whereIsMyTransportlist.get(4).toString(), out4);
-        System.out.println("Test 1: Success");
-    }
-
-    @Test
     public void testSort() throws Exception {
+        ArrayList<whereIsMyTransport> whereIsMyTransportlist = new ArrayList<whereIsMyTransport>();
         whereIsMyTransportlist = sortHashMap.createWMT(referenceData, scoresData);
         Collections.sort(whereIsMyTransportlist, new whereIsMyTransportComparator());
         String out = "Rome - Milan Friday 8.0\nRome - Milan Wednesday 5.5\nRome - Milan Sunday 3.25\nRome - Milan Monday 2.0\n";
@@ -88,7 +74,6 @@ public class JunitTestMain {
         assertEquals(whereIsMyTransportlist.get(2).toString(), out2);
         assertEquals(whereIsMyTransportlist.get(3).toString(), out3);
         assertEquals(whereIsMyTransportlist.get(4).toString(), out4);
-        System.out.println("Test 2: Success");
+        System.out.println("Test 5: Success");
     }
-
 }
