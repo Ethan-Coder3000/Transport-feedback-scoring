@@ -20,7 +20,7 @@ public class main_File {
         readFromTextFile.inputFiles(scoresData, "scores.txt");
         whereIsMyTransportlist = sortHashMap.createWMT(referenceData, scoresData);
         Collections.sort(whereIsMyTransportlist, new whereIsMyTransportComparator());
-        writeToTextFile.writeText(whereIsMyTransportlist);
+        writeToTextFile.writeText(whereIsMyTransportlist, "results.txt");
     }
 
     public static void main(String[] args) throws Exception {
