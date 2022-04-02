@@ -40,7 +40,6 @@ public class sortHashMap {
                 continue;
             } else {
                 for (whereIsMyTransport transport : whereIsMyTransportlist) {
-
                     if (transport.getRoute_identifiers().equals(valKey)) {
                         if (transport.getIden().containsKey(key)) {
                             innerHash = transport.getIden();
