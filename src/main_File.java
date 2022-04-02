@@ -2,8 +2,13 @@
 /* Ethan Lourens
 Transport feedback scoring
 */
+package src;
+
 import java.util.*;
 import whereIsMyTransportPackage.whereIsMyTransport;
+import comparatorPackage.whereIsMyTransportComparator;
+import readWriteFile.readFromTextFile;
+import readWriteFile.writeToTextFile;
 
 public class main_File {
     private static ArrayList<String> referenceData = new ArrayList<String>();
