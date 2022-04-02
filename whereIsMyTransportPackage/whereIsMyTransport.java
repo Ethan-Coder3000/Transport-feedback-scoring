@@ -59,7 +59,6 @@ public class whereIsMyTransport {
         for (String key : totAve.keySet()) {
             countVal = countVal + totAve.get(key);
         }
-        System.out.println(ideni);
         return (double) (BigDecimal.valueOf(countVal).setScale(2, RoundingMode.HALF_UP)).doubleValue();
     }
 
