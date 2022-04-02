@@ -6,10 +6,43 @@ import java.math.*;
 public class whereIsMyTransport {
     private String agency;
     private Map<String, Double> ideni;
+    private Map<String, Integer> count;
+    private String route_identifiers;
 
-    public whereIsMyTransport(String agency, Map<String, Double> ideni) {
+    public whereIsMyTransport(String agency, String route_identifiers, Map<String, Double> ideni,
+            Map<String, Integer> count) {
         this.agency = agency;
+        this.route_identifiers = route_identifiers;
         this.ideni = ideni;
+        this.count = count;
+    }
+
+    public void setIndeni(Map<String, Double> ideni) {
+        this.ideni = ideni;
+    }
+
+    public void setCount(Map<String, Integer> countm) {
+        this.count = countm;
+    }
+
+    public Integer getCount(String key) {
+        return this.count.get(key);
+    }
+
+    public Map<String, Integer> getCountMap() {
+        return this.count;
+    }
+
+    public void setRoute_identifiers(String route_identifiers) {
+        this.route_identifiers = route_identifiers;
+    }
+
+    public String getRoute_identifiers() {
+        return this.route_identifiers;
+    }
+
+    public Double getValId(String key) {
+        return this.ideni.get(key);
     }
 
     public String getAgency() {
@@ -21,27 +54,23 @@ public class whereIsMyTransport {
     }
 
     public Double calTotScore() {
-        Double count = 0.0;
-        for (String key : ideni.keySet()) {
-            count = count + ideni.get(key);
+        Map<String, Double> totAve = ideni;
+        Double countVal = 0.0;
+        for (String key : totAve.keySet()) {
+            countVal = countVal + totAve.get(key);
         }
-        return (BigDecimal.valueOf(count).setScale(2, RoundingMode.HALF_UP)).doubleValue();
+        System.out.println(ideni);
+        return (double) (BigDecimal.valueOf(countVal).setScale(2, RoundingMode.HALF_UP)).doubleValue();
     }
 
-    public ArrayList<String> getDays() {
-        ArrayList<String> days = new ArrayList<String>();
-        for (String key : this.ideni.keySet()) {
-            days.add(key);
+    public void performCalc() {
+        Map<String, Double> performcalc = ideni;
+        for (String key : performcalc.keySet()) {
+            performcalc.put(key, (double) BigDecimal.valueOf(performcalc.get(key) / count.get(key)).setScale(2,
+                    RoundingMode.HALF_UP)
+                    .doubleValue());
         }
-        return days;
-    }
-
-    public ArrayList<Double> getScores() {
-        ArrayList<Double> score = new ArrayList<Double>();
-        for (String key : this.ideni.keySet()) {
-            score.add(this.ideni.get(key));
-        }
-        return score;
+        this.ideni = performcalc;
     }
 
     private Map<String, Double> sortHash() {

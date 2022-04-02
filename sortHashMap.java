@@ -1,4 +1,3 @@
-import java.math.*;
 import java.util.*;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -7,8 +6,7 @@ import whereIsMyTransportPackage.whereIsMyTransport;
 public class sortHashMap {
     private static Map<String, Double> innerHash = new HashMap<>();
     private static Map<String, Integer> innerCount = new HashMap<>();
-    private static Map<String, Map<String, Integer>> CountHash = new HashMap<>();
-    private static Map<String, Map<String, Double>> sortingMap = new HashMap<>();
+    private static ArrayList<whereIsMyTransport> whereIsMyTransportlist = new ArrayList<whereIsMyTransport>();
 
     private static String getDay(String dayN) throws Exception {
         Format formatDate = new SimpleDateFormat("EEEE");
@@ -17,13 +15,9 @@ public class sortHashMap {
         return out;
     }
 
-    private static void performCalc() {
-        for (String key : sortingMap.keySet()) {
-            for (String keyC : sortingMap.get(key).keySet()) {
-                sortingMap.get(key).put(keyC, (double) BigDecimal.valueOf((sortingMap.get(key).get(keyC))
-                        / (Double) Double.valueOf(CountHash.get(key).get(keyC))).setScale(2, RoundingMode.HALF_UP)
-                        .doubleValue());
-            }
+    private static void performCal() {
+        for (int i = 0; i < whereIsMyTransportlist.size(); i++) {
+            whereIsMyTransportlist.get(i).performCalc();
         }
     }
 
@@ -31,7 +25,8 @@ public class sortHashMap {
         String arr[];
         String valKey;
         for (int i = 0; i < scoresData.size(); i++) {
-            String dateEx = scoresData.get(i).substring(0, scoresData.get(i).indexOf(";"));
+            String dateEx = scoresData.get(i).substring(0,
+                    scoresData.get(i).indexOf(";"));
             scoresData.set(i, scoresData.get(i).replace(dateEx, getDay(dateEx)));
             arr = scoresData.get(i).split(";", 2);
             valKey = arr[1].replaceAll("\\s.*", "");
@@ -39,63 +34,51 @@ public class sortHashMap {
             arr = scoresData.get(i).split(";", 2);
             String key = arr[0];
             Double val = (double) Integer.parseInt(arr[1].replaceAll(" ", ""));
-            if (sortingMap.containsKey(valKey)) {
-                if (sortingMap.get(valKey).containsKey(key)) {
-                    if (val == (double) 0 || val == (double) 10) {
-                        continue;
-                    } else {
-                        innerHash = new HashMap<>();
-                        innerHash = sortingMap.get(valKey);
-                        innerHash.put(key, innerHash.get(key) + (double) val);
-                        sortingMap.put(valKey, innerHash);
-
-                        innerCount = new HashMap<>();
-                        innerCount = CountHash.get(valKey);
-                        innerCount.put(key, innerCount.get(key) + 1);
-                        CountHash.put(valKey, innerCount);
-                    }
-                } else {
-                    if (val == (double) 0 || val == (double) 10) {
-                        continue;
-                    } else {
-                        innerHash = new HashMap<>();
-                        innerHash = sortingMap.get(valKey);
-                        innerHash.put(key, (double) val);
-                        sortingMap.put(valKey, innerHash);
-
-                        innerCount = new HashMap<>();
-                        innerCount = CountHash.get(valKey);
-                        innerCount.put(key, 1);
-                        CountHash.put(valKey, innerCount);
-                    }
-                }
+            innerHash = new HashMap<>();
+            innerCount = new HashMap<>();
+            if (val == (double) 0 || val == (double) 10) {
+                continue;
             } else {
-                if (val == (double) 0 || val == (double) 10) {
-                    continue;
-                } else {
-                    innerHash = new HashMap<>();
-                    innerHash.put(key, (double) val);
-                    sortingMap.put(valKey, innerHash);
+                for (whereIsMyTransport transport : whereIsMyTransportlist) {
 
-                    innerCount = new HashMap<>();
-                    innerCount.put(key, 1);
-                    CountHash.put(valKey, innerCount);
+                    if (transport.getRoute_identifiers().equals(valKey)) {
+                        if (transport.getIden().containsKey(key)) {
+                            innerHash = transport.getIden();
+                            innerHash.put(key, innerHash.get(key) + val);
+                        } else {
+                            innerHash = transport.getIden();
+                            innerHash.put(key, val);
+                        }
+                        if (transport.getCountMap().containsKey(key)) {
+                            innerCount = transport.getCountMap();
+                            innerCount.put(key, innerCount.get(key) + 1);
+                        } else {
+                            innerCount = transport.getCountMap();
+                            innerCount.put(key, 1);
+                        }
+                        transport.setIndeni(innerHash);
+                        transport.setCount(innerCount);
+                        break;
+                    }
                 }
             }
         }
-        performCalc();
+
     }
 
     public static ArrayList<whereIsMyTransport> createWMT(ArrayList<String> referenceData, ArrayList<String> scoresData)
             throws Exception {
-        hashMapkeys(referenceData, scoresData);
-        ArrayList<whereIsMyTransport> whereIsMyTransportlist = new ArrayList<whereIsMyTransport>();
         for (int i = 0; i < referenceData.size(); i++) {
             String arr[] = referenceData.get(i).split(";", 2);
             String agency = arr[1];
-            List arrK = new ArrayList(sortingMap.keySet());
-            whereIsMyTransportlist.add(new whereIsMyTransport(agency, sortingMap.get(arr[0].replaceAll("\\s.*", ""))));
+            Map<String, Double> tempMap = new HashMap<>();
+            Map<String, Integer> tempIntMap = new HashMap<>();
+            ;
+            whereIsMyTransportlist
+                    .add(new whereIsMyTransport(agency, arr[0].replaceAll("\\s.*", ""), tempMap, tempIntMap));
         }
+        hashMapkeys(referenceData, scoresData);
+        performCal();
         return whereIsMyTransportlist;
     }
 }

@@ -6,11 +6,10 @@ public class whereIsMyTransportComparator implements
 
     @Override
     public int compare(whereIsMyTransport transport1, whereIsMyTransport transport2) {
-
-        if (transport1.calTotScore() > transport2.calTotScore()) {
-            return -1;
-        } else if (transport1.calTotScore() < transport2.calTotScore()) {
+        if (transport1.calTotScore() < transport2.calTotScore()) {
             return +1;
+        } else if (transport1.calTotScore() > transport2.calTotScore()) {
+            return -1;
         } else {
             return 0;
         }
