@@ -27,7 +27,6 @@ public class sortHashMap {
     private static void hashMapkeys(ArrayList<String> referenceData, ArrayList<String> scoresData) throws Exception {
         String arr[];
         String valKey;
-        // scoresData.size()
         for (int i = 0; i < scoresData.size(); i++) {
             arr = scoresData.get(i).split(";", 2);
             valKey = arr[1].replaceAll("\\s.*", "");
