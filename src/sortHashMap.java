@@ -38,7 +38,7 @@ public class sortHashMap {
 
             innerHash = new HashMap<>();
             innerCount = new HashMap<>();
-            if (val == (double) 0 || val == (double) 10) {
+            if (val == (double) 0 || val == (double) 10 || val > 10) {
                 continue;
             } else {
                 for (whereIsMyTransport transport : whereIsMyTransportlist) {
