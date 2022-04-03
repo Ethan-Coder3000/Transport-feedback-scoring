@@ -56,6 +56,10 @@ public class whereIsMyTransport {
         return this.ideni;
     }
 
+    public String getRouteIdentifier(String route) {
+        return route.replace("route_", "");
+    }
+
     public Double calTotScore() {
         Map<String, Double> totAve = ideni;
         Double countVal = 0.0;
